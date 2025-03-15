@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  fluxodecaixa.lancamento.webapi:
+    image: ${DOCKER_REGISTRY-}fluxodecaixalancamentowebapi
+    build:
+      context: .
+      dockerfile: template/backend/src/FluxoDeCaixa.Lancamento.WebApi/Dockerfile
