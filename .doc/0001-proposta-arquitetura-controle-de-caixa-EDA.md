@@ -14,8 +14,8 @@ Proposta Arquitetural:
 	Estratégia de Retry com Backoff Exponencial para tentativas automáticas de reprocessamento antes de mover
 	 mensagens para a DLQ.
 	
-	O AWS EKS foi escolhido como orquestrador de contêineres devido à sua flexibilidade e melhor suporte 
-	para distribuição horizontal.
+	O AWS ECS foi escolhido como orquestrador de contêineres devido à sua flexibilidade e melhor suporte 
+	para distribuição horizontal e isolamento dos serviços.
 
 Entrada de Requisições
 	O cliente interage com a aplicação via AWS API Gateway.
@@ -28,12 +28,12 @@ Autenticação e Autorização
 	O API Gateway valida os tokens antes de encaminhar as requisições.
 
 Microsserviços
-	Serviço de Controle de Lançamentos
-		Escreve os dados no banco de dados PostgreSQL (Aurora).
+	Serviço de Controle de Lançamentos (API)
+		Escreve os dados no banco de dados PostgreSQL.
 		
 		Publica eventos no AWS SQS para processar a consolidação diária.
 		
-	Serviço de Consolidação Diária
+	Serviço de Consolidação Diária (Worker)
 		Consome eventos do SQS.
 		
 		Processa e atualiza o saldo consolidado no banco.
@@ -42,10 +42,14 @@ Microsserviços
 		
 		Se a mensagem exceder o limite de tentativas, ela é enviada para a DLQ para análise posterior.
 
+		TODO: Futuramente seria interessante armazenar as menssagens que não foram possiveis processar em uma tabela no RDS -> Obs: Este item seria uma melhoria (não contemplado).
+
 Persistência
-	PostgreSQL (Aurora) para armazenar os dados transacionais.
+	PostgreSQL para armazenar os dados transacionais.
+
+	S3 para armazenar os dados consolidados, tendo em mente que pode ser distribuido de uma meneira simples.
 	
-	Redis para caching de informações frequentemente acessadas.
+	TODO: Redis para caching de informações frequentemente acessadas: -> item de melhoria (não contemplado).
 
 Mensageria
 	AWS SQS para comunicação assíncrona entre os serviços.
@@ -61,7 +65,7 @@ Observabilidade
 	
 	Prometheus + Grafana para métricas adicionais.
 
-CI/CD (Entrega Contínua)
+CI/CD (Entrega Contínua) (Não contempla na entrega mas está arquitetado)
 	GitHub Actions dispara o pipeline ao abrir PRs.
 	
 	AWS CodeBuild gera as imagens Docker e armazena no AWS ECR.
@@ -71,19 +75,17 @@ CI/CD (Entrega Contínua)
 	Terraform provisiona toda a infraestrutura na AWS.
 
 Execução em Contêineres
-	Os serviços são empacotados como imagens Docker.
-	
-	Os contêineres são gerenciados pelo AWS EKS para escalabilidade automática e distribuição 
-	horizontal eficiente.
+	Os contêineres são gerenciados pelo AWS ECS para escalabilidade automática, distribuição 
+	horizontal eficiente e isolamento.
 
 Próximos Passos
-	Criar o diagrama visual no draw.io com esses componentes.
+	Criar o diagrama visual no draw.io com esses componentes ☑. 
 	
-	Refinar detalhes sobre autoescalabilidade e failover.
+	Refinar detalhes sobre autoescalabilidade e failover ☑.
 	
-	Definir estratégias de segurança para comunicação entre os serviços.
+	Definir estratégias de segurança para comunicação entre os serviços ☑.
 	
-	Configurar o monitoramento das mensagens na DLQ para análise e reprocessamento manual quando necessário.
+	Configurar o monitoramento das mensagens na DLQ para análise e reprocessamento manual quando necessário ☑.
 </pre>
 
 ![Descrição da imagem](../.content/0001-arquitetura-desafio.png)
