@@ -227,7 +227,7 @@ var assemblies = [
       { "name": "FluxoDeCaixa.Lancamento.Application.RequestResponse.CashRegisterRequest", "rp": "FluxoDeCaixa.Lancamento.Application_CashRegisterRequest.html", "cl": 7, "ucl": 0, "cal": 7, "tl": 18, "cb": 3, "tb": 6, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "FluxoDeCaixa.Lancamento.Application.RequestResponse.CashRegisterResponse", "rp": "FluxoDeCaixa.Lancamento.Application_CashRegisterResponse.html", "cl": 1, "ucl": 3, "cal": 4, "tl": 11, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
       { "name": "FluxoDeCaixa.Lancamento.Application.Services.BaseService<T>", "rp": "FluxoDeCaixa.Lancamento.Application_BaseService_1.html", "cl": 5, "ucl": 0, "cal": 5, "tl": 14, "cb": 0, "tb": 0, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
-      { "name": "FluxoDeCaixa.Lancamento.Application.Services.CashRegisterAppService", "rp": "FluxoDeCaixa.Lancamento.Application_CashRegisterAppService.html", "cl": 33, "ucl": 10, "cal": 43, "tl": 89, "cb": 2, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
+      { "name": "FluxoDeCaixa.Lancamento.Application.Services.CashRegisterAppService", "rp": "FluxoDeCaixa.Lancamento.Application_CashRegisterAppService.html", "cl": 43, "ucl": 0, "cal": 43, "tl": 89, "cb": 4, "tb": 4, "cm": 0, "fcm": 0, "tm": 0, "lch": [], "bch": [], "mch": [], "mfch": [], "hc": [], "metrics": { } },
     ]},
   {
     "name": "FluxoDeCaixa.Lancamento.Cloud",
