@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <FrameworkReference Include="Microsoft.NETCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluxoDeCaixa.Lancamento.Application\FluxoDeCaixa.Lancamento.Application.csproj" />
+    <ProjectReference Include="..\FluxoDeCaixa.Lancamento.Cloud\FluxoDeCaixa.Lancamento.Cloud.csproj" />
+    <ProjectReference Include="..\FluxoDeCaixa.Lancamento.Common\FluxoDeCaixa.Lancamento.Common.csproj" />
+    <ProjectReference Include="..\FluxoDeCaixa.Lancamento.Domain\FluxoDeCaixa.Lancamento.Domain.csproj" />
+    <ProjectReference Include="..\FluxoDeCaixa.Lancamento.ORM\FluxoDeCaixa.Lancamento.ORM.csproj" />
+  </ItemGroup>
+
+</Project>
