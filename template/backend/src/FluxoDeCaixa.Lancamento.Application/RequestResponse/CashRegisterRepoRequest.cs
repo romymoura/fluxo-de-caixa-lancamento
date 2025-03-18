@@ -4,16 +4,17 @@ namespace FluxoDeCaixa.Lancamento.Application.RequestResponse;
 
 public class CashRegisterRepoRequest
 {
-    public string? IdStore { get; set; }
-    public string? IdMessage { get; set; }
+    public string? ProductId { get; set; }
+    public string? StoreId { get; set; }
+    public string? MessageId { get; set; }
     public DateTime? CreateDate { get; set; }
     public decimal? Price { get; set; } = 0;
     public int? Amount { get; set; } = 1;
-    public decimal? Total
+    public decimal? Subtotal
     {
         get
         {
-            return Price * Amount;
+            return Price * (CashRegisterType == CashRegisterType.Credit ? Amount : 1);
         }
     }
     public CashRegisterType CashRegisterType { get; set; }

@@ -2,5 +2,5 @@
 
 public class CashRegisterRepoResponse
 {
-    public int IdProduct { get; set; }
+    public Guid ProductId { get; set; }
 }

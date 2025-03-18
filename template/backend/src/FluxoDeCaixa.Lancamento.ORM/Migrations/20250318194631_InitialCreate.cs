@@ -31,10 +31,10 @@ namespace FluxoDeCaixa.Lancamento.ORM.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    IdStore = table.Column<Guid>(type: "uuid", nullable: false),
-                    IdMessage = table.Column<Guid>(type: "uuid", nullable: false),
+                    MessageId = table.Column<Guid>(type: "uuid", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
                     Amount = table.Column<int>(type: "integer", nullable: false),
+                    Subtotal = table.Column<decimal>(type: "numeric", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
                     CashRegisterType = table.Column<int>(type: "integer", nullable: false),
                     StoreId = table.Column<Guid>(type: "uuid", nullable: false),

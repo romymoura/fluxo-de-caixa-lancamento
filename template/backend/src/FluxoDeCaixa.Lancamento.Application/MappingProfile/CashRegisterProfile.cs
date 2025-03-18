@@ -13,16 +13,15 @@ public class CashRegisterProfile : Profile
         CreateMap<Amazon.SQS.Model.SendMessageResponse, RequestResponse.CashRegisterResponse>()
             .BeforeMap((source, destination) =>
             {
-                destination.IdMessage = new Guid(source.MessageId);
+                destination.MessageId = new Guid(source.MessageId);
             });
 
         // Request da Application para Repo.
         CreateMap<CashRegisterRepoRequest, Product>()
             .BeforeMap((source, destination) =>
             {
-                destination.Id = Guid.NewGuid(); // informa o novo registro do produto
-                destination.IdStore = new Guid(source.IdStore ?? Guid.NewGuid().ToString());
-                destination.IdMessage = new Guid(source.IdMessage ?? Guid.NewGuid().ToString());
+                destination.StoreId = new Guid(source.StoreId ?? Guid.NewGuid().ToString());
+                destination.MessageId = new Guid(source.MessageId ?? Guid.NewGuid().ToString());
                 destination.CreatedAt = source.CreateDate ?? DateTime.Now;
                 destination.Description = source.CashRegisterType switch
                 {
@@ -31,14 +30,15 @@ public class CashRegisterProfile : Profile
                     _ => "Registro sem identificação!"
                 };
                 destination.Amount = source.Amount ?? 1;
+                destination.Price = source.Price ?? 0;
+                destination.Subtotal = source.Subtotal ?? 0;
             });
 
         // Response da Repo para Application.
         CreateMap<Product, CashRegisterRepoResponse>()
             .BeforeMap((source, destination) =>
             {
-                //destination.Persitence = true;
+                destination.ProductId = source.Id;
             });
     }
 }
-

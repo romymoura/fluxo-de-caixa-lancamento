@@ -5,6 +5,10 @@ namespace FluxoDeCaixa.Lancamento.Domain.Entities;
 
 public class BaseEntity : IComparable<BaseEntity>
 {
+    public BaseEntity()
+    {
+        Id = Guid.NewGuid();
+    }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Amazon.Auth.AccessControlPolicy;
+using AutoMapper;
 using CSharpFunctionalExtensions;
 using FluxoDeCaixa.Lancamento.Application.Interfaces;
 using FluxoDeCaixa.Lancamento.Common.Enums;
@@ -41,33 +42,41 @@ namespace FluxoDeCaixa.Lancamento.WebApi.Controllers
             //if (!validationResult.IsValid)
             //return BadRequest(validationResult.Errors);
 
-            
+
             var idStore = this.GetCurrentUserId();
             var cashRegisterMessageRequest = _mapper.Map<Application.RequestResponse.CashRegisterRequest>(request);
-            cashRegisterMessageRequest.IdStore = new Guid(idStore);
+            cashRegisterMessageRequest.StoreId = new Guid(idStore);
 
-
-            Func<Application.RequestResponse.CashRegisterResponse, Result<Application.RequestResponse.CashRegisterRepoRequest>> bindCashRegisterRequestToPersistence = 
-                (sendCashRegisterResponse) => {
-                var repoRequest = new Application.RequestResponse.CashRegisterRepoRequest
+            // TODO: Passa para o map
+            Func<Application.RequestResponse.CashRegisterResponse, Result<Application.RequestResponse.CashRegisterRepoRequest>> bindCashRegisterRequestToMessage =
+                (source) =>
                 {
-                    IdStore = idStore,
-                    IdMessage = sendCashRegisterResponse.IdMessage.ToString(),
-                    CreateDate = DateTime.UtcNow,
-                    Amount = request.Amount,
-                    Price = request.Price,
-                    CashRegisterType = request.CashRegisterType
+                    var repoRequest = new Application.RequestResponse.CashRegisterRepoRequest
+                    {
+                        StoreId = idStore,
+                        MessageId = source.MessageId.ToString(),
+                        CreateDate = DateTime.UtcNow,
+                        Amount = request.Amount,
+                        Price = request.Price,
+                        CashRegisterType = request.CashRegisterType
+                    };
+                    return Result.Success(repoRequest);
                 };
-                return Result.Success(repoRequest);
-            };
+
+            var cashPersistenceRequest = await _cashRegisterAppService.SendCashRegisterMessageAsync(cashRegisterMessageRequest, cancellationToken)
+                 .Bind(resultA => bindCashRegisterRequestToMessage(resultA)
+                     .Bind(resultB => _cashRegisterAppService.SendCashRegisterPersistenceAsync(resultB, cancellationToken) // Usa o código de ClasseB para buscar ClasseC
+                     .Map(resultadoC =>
+                     {
+                         resultB.ProductId = resultadoC.ProductId.ToString();
+                         return resultB;
+                     })));
 
 
-            var cashPersistenceRequest = await _cashRegisterAppService.SendCashRegisterAsync(cashRegisterMessageRequest, cancellationToken)
-                .Bind(requestPersistence => bindCashRegisterRequestToPersistence(requestPersistence))
-                .Check(requestPsistence => _cashRegisterAppService.SendCashRegisterPersistenceAsync(requestPsistence, cancellationToken));
+            if (cashPersistenceRequest.IsFailure)
+                return BadRequest(cashPersistenceRequest.Error);
 
-
-            var result = _mapper.Map<CashRegisterResponseRequest>(cashPersistenceRequest);
+            var result = _mapper.Map<Utils.RequestResponse.CashRegisterResponseRequest>(cashPersistenceRequest.Value);
 
             var message = request.CashRegisterType switch
             {

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FluxoDeCaixa.Lancamento.ORM.Migrations
 {
     [DbContext(typeof(DefaultContext))]
-    [Migration("20250318050619_InitialCreate")]
+    [Migration("20250318194631_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -44,10 +44,7 @@ namespace FluxoDeCaixa.Lancamento.ORM.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("IdMessage")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IdStore")
+                    b.Property<Guid>("MessageId")
                         .HasColumnType("uuid");
 
                     b.Property<decimal>("Price")
@@ -55,6 +52,9 @@ namespace FluxoDeCaixa.Lancamento.ORM.Migrations
 
                     b.Property<Guid>("StoreId")
                         .HasColumnType("uuid");
+
+                    b.Property<decimal>("Subtotal")
+                        .HasColumnType("numeric");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");

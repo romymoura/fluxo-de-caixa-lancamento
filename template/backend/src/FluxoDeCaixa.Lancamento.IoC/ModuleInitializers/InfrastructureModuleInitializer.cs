@@ -24,6 +24,8 @@ public class InfrastructureModuleInitializer : IModuleInitializer
 
     private void RegisterDependencies(ref WebApplicationBuilder builder)
     {
+        //builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
         builder.Services.AddScoped<ICasheRegisterRepository, CashRegisterRepository>();
+        builder.Services.AddScoped<IStoreRepository, StoreRepository>();
     }
 }

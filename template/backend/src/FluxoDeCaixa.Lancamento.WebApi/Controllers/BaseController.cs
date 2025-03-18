@@ -16,8 +16,14 @@ public class BaseController : ControllerBase
     }
     protected string GetCurrentUserId()
     {
-        var result = User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
-        return string.IsNullOrEmpty(result) ? Guid.NewGuid().ToString() : result;
+        var result = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+#if DEBUG
+        // Utilizado para loja fake, pois esse valor será recuperado do token via claim
+        return string.IsNullOrEmpty(result) ? "862e08eb-fa5b-4393-9e82-983002538378" : result;
+#else
+        return result ?? string.Empty;
+#endif
     }
 
     protected string GetCurrentUserEmail() => User.FindFirst(ClaimTypes.Email)?.Value ?? string.Empty;
