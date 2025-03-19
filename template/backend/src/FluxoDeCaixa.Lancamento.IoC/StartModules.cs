@@ -9,7 +9,6 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Security.Claims;
 
-
 namespace FluxoDeCaixa.Lancamento.IoC;
 public static class StartModules
 {

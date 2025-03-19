@@ -42,8 +42,14 @@ public class CashRegisterAppService : BaseService<CashRegisterAppService>, ICash
         {
             _logger.LogInformation("Inicio processamento para caixa registradora regra de negocio, mensagria");
             var store = await StoreExists(request.StoreId, cancellationToken);
-            var requestJson = JsonConvert.SerializeObject(request);
-            var resultService = await _sqsPublisher.PublishMessageAsync(requestJson, cancellationToken: cancellationToken);
+            var settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+            var requestJson = JsonConvert.SerializeObject(request, settings);
+            _logger.LogInformation($"Conteúdo {requestJson}, mensagria");
+            var resultService = await _sqsPublisher.PublishMessageAsync<CashRegisterRequest>(request, cancellationToken: cancellationToken);
             var result = _mapper.Map<CashRegisterResponse>(resultService);
             _logger.LogInformation("Fim processamento para caixa registradora regra de negocio, mensagria");
             return Result.Success(result);
