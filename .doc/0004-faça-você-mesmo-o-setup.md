@@ -54,7 +54,7 @@ Valide se foram criado as tabelas com uma loja inicialmente cadastradas para os 
 	* Pode rodar o serviço de lançamento pelo VS2022 e deixe ele de pé!
 ![Descrição da imagem](../.content/setup/009-api-lancamento.png)
 
-## Conficuragdo o serviço de consolidação
+## Configurando o serviço de consolidação
 
 	Obs: Serviço desenvolvido em .NET 8
 
