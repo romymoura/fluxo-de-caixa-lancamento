@@ -1,4 +1,4 @@
-# Teste GFT Fluxo de caixa.
+# Teste Fluxo de caixa.
 
 Esse repositório tem como objetivo versionar o projeto afim de fazer o fluxo de caixa.
 
