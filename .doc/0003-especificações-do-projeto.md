@@ -1,4 +1,4 @@
-# UM ECS será responsável pela distribuição horizontal do serviço.
+# O ECS será responsável pela distribuição horizontal do serviço.
 
 ### Especificações do projeto
 <pre>
