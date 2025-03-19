@@ -3,6 +3,13 @@
 Esse repositório tem como objetivo versionar o projeto afim de fazer o fluxo de caixa.
 
 
+## Infra do projeto, você deve fazer essas configurações antes de tentar rodar o projeto:
+
+O serviço foi arquitetado para rodar na nuvem, a infra estrutura escrita em terraform você encontra [aqui](https://github.com/romymoura/fluxo-de-caixa-infra)
+
+
+## API Rest Full, Serviço de lançamento (Débito e Crédito) -> ECS:
+
 * Navegue pelas as especificações e entenda o que foi feito.
 
 	0 - [Desafio](/.doc/0000-desafio.md)
@@ -16,10 +23,8 @@ Esse repositório tem como objetivo versionar o projeto afim de fazer o fluxo de
 	4 - [Setup do projeto](/.doc/0004-faça-você-mesmo-o-setup.md)
 
 
-# Infra do projeto:
 
-O serviço foi arquitetado para rodar na nuvem, a infra estrutura escrita em terraform você encontra [aqui](https://github.com/romymoura/fluxo-de-caixa-infra)
 
-# Consolidador de saldo:
+## Worker Consolidador de saldo -> ECS
 
 O serviço que vai consolidar o saldo do caixa você encontra [aqui](https://github.com/romymoura/fluxo-de-caixa-consolidacao)
