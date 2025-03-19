@@ -33,7 +33,7 @@ public static class LoggingExtension
         return excludeByStatusCode && excludeByPath;
     };
 
-    public static WebApplicationBuilder AddDefaultLogging(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder AddDefaultLogger(this WebApplicationBuilder builder)
     {
         Log.Logger = new LoggerConfiguration().CreateLogger();
         builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>

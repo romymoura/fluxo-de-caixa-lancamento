@@ -15,7 +15,7 @@ public static class StartModules
 {
     public static void InitializerModulesNow(this WebApplicationBuilder builder)
     {
-        builder.InitLogin();
+        builder.InitLogger();
         builder.InitConfigSwagger();
         builder.InitSecurity();
         builder.InitAutoMapper();
@@ -26,9 +26,9 @@ public static class StartModules
         new CloudModuleInitializer().Initialize(builder);
     }
 
-    private static void InitLogin(this WebApplicationBuilder builder)
+    private static void InitLogger(this WebApplicationBuilder builder)
     {
-        builder.AddDefaultLogging();
+        builder.AddDefaultLogger();
     }
 
     private static void InitConfigSwagger(this WebApplicationBuilder builder)
