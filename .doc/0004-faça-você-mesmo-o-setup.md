@@ -134,7 +134,7 @@ Reparem que o valor foi reduzido do caixa.
 	oportunidade de participar deste teste.	
 
 
-Clique <a href="https://github.com/romymoura/fluxo-de-caixa-infra/blob/main/README.md">aqui</a> para visitar meu perfil no LinkedIn, obrigado!
+Clique <a href="https://www.linkedin.com/in/romymoura">aqui</a> para visitar meu perfil no LinkedIn, obrigado!
 	
 
 <div style="display: flex; justify-content: space-between;">
