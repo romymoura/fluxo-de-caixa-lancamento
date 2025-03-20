@@ -134,7 +134,9 @@ Reparem que o valor foi reduzido do caixa.
 	oportunidade de participar deste teste.	
 
 
-Clique <a href="https://www.linkedin.com/in/romymoura">aqui</a> para visitar meu perfil no LinkedIn, obrigado!
+Clique <a href="https://www.linkedin.com/in/romymoura">aqui</a> para visitar meu perfil no LinkedIn.
+
+Clique <a href="https://www.facebook.com/romy.sktart">aqui</a> para visitar meu perfil no Facebook.
 	
 
 <div style="display: flex; justify-content: space-between;">
