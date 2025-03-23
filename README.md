@@ -5,7 +5,7 @@ Esse repositório tem como objetivo versionar o projeto afim de fazer o fluxo de
 
 ## Infra do projeto, você deve fazer essas configurações antes de tentar rodar o projeto:
 
-O serviço foi arquitetado para rodar na nuvem, a infra estrutura escrita em terraform você encontra [aqui](https://github.com/romymoura/fluxo-de-caixa-infra)
+O serviço foi arquitetado para rodar na nuvem, a infraestrutura escrita em terraform você encontra [aqui](https://github.com/romymoura/fluxo-de-caixa-infra)
 
 
 ## API Rest Full, Serviço de lançamento (Débito e Crédito) -> ECS:
