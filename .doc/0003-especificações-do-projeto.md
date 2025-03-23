@@ -57,9 +57,9 @@ Você pode visualizar o relatório de cobertura [aqui](https://github.com/romymo
 ## Lib's utilizadas
 ![Descrição da imagem](../.content/0005-cobertura-de-codigo.png)
 
-## Atenção: infra estrutura
+## Atenção: infraestrutura
 
-O serviço foi arquitetado para rodar na nuvem, a infra estrutura escrita em terraform você encontra [aqui](https://github.com/romymoura/fluxo-de-caixa-infra)
+O serviço foi arquitetado para rodar na nuvem, a infraestrutura escrita em terraform você encontra [aqui](https://github.com/romymoura/fluxo-de-caixa-infra)
 
 
 
